@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lijiaqi.lijin.dao.LjInMoneyPOMapper">
+  <resultMap id="BaseResultMap" type="com.lijiaqi.lijin.po.LjInMoneyPO">
+    <id column="in_id" jdbcType="INTEGER" property="inId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="in_money" jdbcType="DOUBLE" property="inMoney" />
+    <result column="return_money" jdbcType="DOUBLE" property="returnMoney" />
+    <result column="return_date" jdbcType="TIMESTAMP" property="returnDate" />
+    <result column="return_reason" jdbcType="VARCHAR" property="returnReason" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    in_id, user_id, name, reason, in_money, return_money, return_date, return_reason, 
+    note, create_date
+  </sql>
+  <select id="selectByExample" parameterType="com.lijiaqi.lijin.po.LjInMoneyPOCriterion" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from lj_in_money
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lj_in_money
+    where in_id = #{inId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lj_in_money
+    where in_id = #{inId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO">
+    insert into lj_in_money (in_id, user_id, name, 
+      reason, in_money, return_money, 
+      return_date, return_reason, note, 
+      create_date)
+    values (#{inId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{inMoney,jdbcType=DOUBLE}, #{returnMoney,jdbcType=DOUBLE}, 
+      #{returnDate,jdbcType=TIMESTAMP}, #{returnReason,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO">
+    insert into lj_in_money
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="inId != null">
+        in_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="inMoney != null">
+        in_money,
+      </if>
+      <if test="returnMoney != null">
+        return_money,
+      </if>
+      <if test="returnDate != null">
+        return_date,
+      </if>
+      <if test="returnReason != null">
+        return_reason,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="inId != null">
+        #{inId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="inMoney != null">
+        #{inMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="returnMoney != null">
+        #{returnMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="returnDate != null">
+        #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnReason != null">
+        #{returnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lijiaqi.lijin.po.LjInMoneyPOCriterion" resultType="java.lang.Long">
+    select count(*) from lj_in_money
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lj_in_money
+    <set>
+      <if test="record.inId != null">
+        in_id = #{record.inId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reason != null">
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inMoney != null">
+        in_money = #{record.inMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.returnMoney != null">
+        return_money = #{record.returnMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.returnDate != null">
+        return_date = #{record.returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.returnReason != null">
+        return_reason = #{record.returnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null">
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lj_in_money
+    set in_id = #{record.inId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      in_money = #{record.inMoney,jdbcType=DOUBLE},
+      return_money = #{record.returnMoney,jdbcType=DOUBLE},
+      return_date = #{record.returnDate,jdbcType=TIMESTAMP},
+      return_reason = #{record.returnReason,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO">
+    update lj_in_money
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="inMoney != null">
+        in_money = #{inMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="returnMoney != null">
+        return_money = #{returnMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="returnDate != null">
+        return_date = #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnReason != null">
+        return_reason = #{returnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where in_id = #{inId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO">
+    update lj_in_money
+    set user_id = #{userId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      in_money = #{inMoney,jdbcType=DOUBLE},
+      return_money = #{returnMoney,jdbcType=DOUBLE},
+      return_date = #{returnDate,jdbcType=TIMESTAMP},
+      return_reason = #{returnReason,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where in_id = #{inId,jdbcType=INTEGER}
+  </update>
+</mapper>
