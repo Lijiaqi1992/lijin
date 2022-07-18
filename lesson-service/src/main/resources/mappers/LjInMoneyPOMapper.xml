@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    in_id, user_id, name, reason, in_money, return_money, return_date, return_reason, 
+    in_id, user_id, name, reason, in_money, return_money, return_date, return_reason,
     note, create_date
   </sql>
   <select id="selectByExample" parameterType="com.lijiaqi.lijin.po.LjInMoneyPOCriterion" resultMap="BaseResultMap">
@@ -91,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from lj_in_money
     where in_id = #{inId,jdbcType=INTEGER}
@@ -100,14 +100,14 @@
     delete from lj_in_money
     where in_id = #{inId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO">
-    insert into lj_in_money (in_id, user_id, name, 
-      reason, in_money, return_money, 
-      return_date, return_reason, note, 
+  <insert id="insert" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO" useGeneratedKeys = "true" keyProperty = "inId">
+    insert into lj_in_money (in_id, user_id, name,
+      reason, in_money, return_money,
+      return_date, return_reason, note,
       create_date)
-    values (#{inId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{reason,jdbcType=VARCHAR}, #{inMoney,jdbcType=DOUBLE}, #{returnMoney,jdbcType=DOUBLE}, 
-      #{returnDate,jdbcType=TIMESTAMP}, #{returnReason,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+    values (#{inId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{reason,jdbcType=VARCHAR}, #{inMoney,jdbcType=DOUBLE}, #{returnMoney,jdbcType=DOUBLE},
+      #{returnDate,jdbcType=TIMESTAMP}, #{returnReason,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
       #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO">

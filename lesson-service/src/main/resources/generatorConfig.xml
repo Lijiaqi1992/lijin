@@ -45,9 +45,9 @@
        <!-- <table tableName="students" domainObjectName="StudentsPO" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
         <table tableName="payment_record" domainObjectName="PaymentRecordPO" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
         -->
-        <table tableName="lj_in_money" domainObjectName="LjInMoneyPO" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+      <!--  <table tableName="lj_in_money" domainObjectName="LjInMoneyPO" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
         <table tableName="lj_out_money" domainObjectName="LjOutMoneyPO" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-        <table tableName="lj_user" domainObjectName="LjUserPO" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        --><table tableName="lj_user" domainObjectName="LjUserPO" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="true" selectByExampleQueryId="true"></table>
 
 
     </context>

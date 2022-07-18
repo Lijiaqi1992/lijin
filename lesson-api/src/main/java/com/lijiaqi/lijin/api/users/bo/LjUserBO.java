@@ -1,9 +1,9 @@
-package com.lijiaqi.lijin.po;
+package com.lijiaqi.lijin.api.users.bo;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class LjUserPO implements Serializable {
+public class LjUserBO implements Serializable {
     private Integer userId;
 
     private String nickName;

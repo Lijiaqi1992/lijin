@@ -22,8 +22,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         try {
             if (StringUtils.isNotEmpty(token)) {
                 Claims claims = LjqJwt.decodeToken(token);
-                response.setHeader("userId", claims.getId());
-                response.setHeader("userName", claims.getSubject());
+                request.setAttribute("userId", claims.getId());
+                request.setAttribute("userName", claims.getSubject());
                 return true;
             }
             response.setStatus(HttpStatus.UNAUTHORIZED.value()); // 401

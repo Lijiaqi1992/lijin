@@ -34,6 +34,9 @@ public class CreateInMoneyServiceImpl implements CreateInMoneyService {
         BeanUtils.copyProperties(ljInMoneyBO, ljInMoneyPO);
 
         ljInMoneyPO.setCreateDate(createDate);
+        if(ljInMoneyBO.getReturnMoney() == 0){
+            ljInMoneyPO.setReturnDate(null);
+        }
         int insert = ljInMoneyPOMapper.insert(ljInMoneyPO);
         if(insert == 1 && ljInMoneyBO.getReturnMoney() > 0){
             LjOutMoneyPO out = new LjOutMoneyPO();

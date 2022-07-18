@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping(value = "/in")
-public class InMoneyController {
+public class InMoneyController extends BaseController{
 
     @Resource
     CreateInMoneyService createInMoneyService;
@@ -21,6 +21,7 @@ public class InMoneyController {
     @ResponseBody
     @PostMapping(value = "/create")
     public Object saveRecord(@RequestBody LjInMoneyBO ljInMoneyBO){
+        ljInMoneyBO.setUserId(getCurrentUserId());
         return createInMoneyService.createInMoney(ljInMoneyBO);
     }
 }
