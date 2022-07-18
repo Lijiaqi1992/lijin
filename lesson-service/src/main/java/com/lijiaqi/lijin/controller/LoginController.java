@@ -1,6 +1,5 @@
 package com.lijiaqi.lijin.controller;
 
-import java.util.Date;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lijiaqi.lijin.api.users.bo.LjUserBO;
@@ -8,7 +7,6 @@ import com.lijiaqi.lijin.api.users.bo.UserBO;
 import com.lijiaqi.lijin.api.users.service.LoginService;
 import com.lijiaqi.lijin.api.users.service.UserCreateService;
 import com.lijiaqi.lijin.api.wx.bo.MiniProgramsBO;
-import com.lijiaqi.lijin.po.LjUserPO;
 import com.ljq.plugins.base.exception.MyBusinessException;
 import com.ljq.plugins.base.response.RspBO;
 import com.ljq.plugins.base.security.jwt.LjqJwt;
@@ -60,8 +58,8 @@ public class LoginController {
     @PostMapping("/wx")
     @ResponseBody
     public Object wx(@RequestBody JSONObject params, HttpServletResponse response) {
-        String appId = "xxx";
-        String secret = "xxx";
+        String appId = "wxe8a21ff9d547178c";
+        String secret = "8da21bb561c8adac9255cd16fd7f6545";
         String urlTemplate = "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code";
         String url = String.format(urlTemplate, appId, secret, params.getString("code"));
         ResponseEntity<MiniProgramsBO> forEntity = restTemplate.getForEntity(url, MiniProgramsBO.class);
