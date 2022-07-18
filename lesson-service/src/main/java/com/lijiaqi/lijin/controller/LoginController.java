@@ -60,8 +60,8 @@ public class LoginController {
     @PostMapping("/wx")
     @ResponseBody
     public Object wx(@RequestBody JSONObject params, HttpServletResponse response) {
-        String appId = "wxe8a21ff9d547178c";
-        String secret = "8da21bb561c8adac9255cd16fd7f6545";
+        String appId = "xxx";
+        String secret = "xxx";
         String urlTemplate = "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code";
         String url = String.format(urlTemplate, appId, secret, params.getString("code"));
         ResponseEntity<MiniProgramsBO> forEntity = restTemplate.getForEntity(url, MiniProgramsBO.class);
