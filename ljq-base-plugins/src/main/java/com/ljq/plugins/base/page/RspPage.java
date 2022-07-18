@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RspPage<T> {
     protected int pageNo = 1;
-    protected int pageSize = 10;
+    protected int pageSize = 20;
     protected int offset;
     protected int limit;
     protected List<T> result = new ArrayList();

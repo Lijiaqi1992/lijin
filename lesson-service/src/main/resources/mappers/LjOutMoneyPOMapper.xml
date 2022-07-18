@@ -89,7 +89,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from lj_out_money
     where out_id = #{outId,jdbcType=INTEGER}
@@ -98,13 +98,13 @@
     delete from lj_out_money
     where out_id = #{outId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lijiaqi.lijin.po.LjOutMoneyPO">
-    insert into lj_out_money (out_id, user_id, name, 
-      reason, out_money, out_date, 
+  <insert id="insert" parameterType="com.lijiaqi.lijin.po.LjOutMoneyPO"  useGeneratedKeys = "true" keyProperty = "outId">
+    insert into lj_out_money (out_id, user_id, name,
+      reason, out_money, out_date,
       in_id, note, create_date
       )
-    values (#{outId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{reason,jdbcType=VARCHAR}, #{outMoney,jdbcType=DOUBLE}, #{outDate,jdbcType=TIMESTAMP}, 
+    values (#{outId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{reason,jdbcType=VARCHAR}, #{outMoney,jdbcType=DOUBLE}, #{outDate,jdbcType=TIMESTAMP},
       #{inId,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
       )
   </insert>
