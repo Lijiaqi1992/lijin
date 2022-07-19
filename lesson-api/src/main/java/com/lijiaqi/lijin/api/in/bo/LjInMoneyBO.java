@@ -1,6 +1,9 @@
 package com.lijiaqi.lijin.api.in.bo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ljq.plugins.base.page.RspPage;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,6 +21,7 @@ public class LjInMoneyBO extends RspPage implements Serializable {
 
     private Double returnMoney;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date returnDate;
 
     private String returnReason;
