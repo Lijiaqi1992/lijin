@@ -14,6 +14,8 @@ public class LjInMoneyPO implements Serializable {
 
     private Double inMoney;
 
+    private Date inDate;
+
     private Double returnMoney;
 
     private Date returnDate;
@@ -64,6 +66,14 @@ public class LjInMoneyPO implements Serializable {
 
     public void setInMoney(Double inMoney) {
         this.inMoney = inMoney;
+    }
+
+    public Date getInDate() {
+        return inDate;
+    }
+
+    public void setInDate(Date inDate) {
+        this.inDate = inDate;
     }
 
     public Double getReturnMoney() {

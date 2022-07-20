@@ -2,6 +2,7 @@ package com.lijiaqi.lijin.po;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class LjInMoneyPOCriterion {
@@ -103,6 +104,32 @@ public class LjInMoneyPOCriterion {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andInIdIsNull() {
@@ -422,6 +449,66 @@ public class LjInMoneyPOCriterion {
 
         public Criteria andInMoneyNotBetween(Double value1, Double value2) {
             addCriterion("in_money not between", value1, value2, "inMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateIsNull() {
+            addCriterion("in_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateIsNotNull() {
+            addCriterion("in_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateEqualTo(Date value) {
+            addCriterionForJDBCDate("in_date =", value, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("in_date <>", value, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("in_date >", value, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("in_date >=", value, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateLessThan(Date value) {
+            addCriterionForJDBCDate("in_date <", value, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("in_date <=", value, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateIn(List<Date> values) {
+            addCriterionForJDBCDate("in_date in", values, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("in_date not in", values, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("in_date between", value1, value2, "inDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andInDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("in_date not between", value1, value2, "inDate");
             return (Criteria) this;
         }
 

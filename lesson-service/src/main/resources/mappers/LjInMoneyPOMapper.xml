@@ -7,6 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="in_money" jdbcType="DOUBLE" property="inMoney" />
+    <result column="in_date" jdbcType="DATE" property="inDate" />
     <result column="return_money" jdbcType="DOUBLE" property="returnMoney" />
     <result column="return_date" jdbcType="TIMESTAMP" property="returnDate" />
     <result column="return_reason" jdbcType="VARCHAR" property="returnReason" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    in_id, user_id, name, reason, in_money, return_money, return_date, return_reason,
+    in_id, user_id, name, reason, in_money, in_date, return_money, return_date, return_reason,
     note, create_date
   </sql>
   <select id="selectByExample" parameterType="com.lijiaqi.lijin.po.LjInMoneyPOCriterion" resultMap="BaseResultMap">
@@ -100,15 +101,15 @@
     delete from lj_in_money
     where in_id = #{inId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO" useGeneratedKeys = "true" keyProperty = "inId">
+  <insert id="insert" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO"  useGeneratedKeys = "true" keyProperty = "inId">
     insert into lj_in_money (in_id, user_id, name,
-      reason, in_money, return_money,
-      return_date, return_reason, note,
-      create_date)
+      reason, in_money, in_date,
+      return_money, return_date, return_reason,
+      note, create_date)
     values (#{inId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
-      #{reason,jdbcType=VARCHAR}, #{inMoney,jdbcType=DOUBLE}, #{returnMoney,jdbcType=DOUBLE},
-      #{returnDate,jdbcType=TIMESTAMP}, #{returnReason,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
-      #{createDate,jdbcType=TIMESTAMP})
+      #{reason,jdbcType=VARCHAR}, #{inMoney,jdbcType=DOUBLE}, #{inDate,jdbcType=DATE},
+      #{returnMoney,jdbcType=DOUBLE}, #{returnDate,jdbcType=TIMESTAMP}, #{returnReason,jdbcType=VARCHAR},
+      #{note,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lijiaqi.lijin.po.LjInMoneyPO">
     insert into lj_in_money
@@ -127,6 +128,9 @@
       </if>
       <if test="inMoney != null">
         in_money,
+      </if>
+      <if test="inDate != null">
+        in_date,
       </if>
       <if test="returnMoney != null">
         return_money,
@@ -159,6 +163,9 @@
       </if>
       <if test="inMoney != null">
         #{inMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="inDate != null">
+        #{inDate,jdbcType=DATE},
       </if>
       <if test="returnMoney != null">
         #{returnMoney,jdbcType=DOUBLE},
@@ -201,6 +208,9 @@
       <if test="record.inMoney != null">
         in_money = #{record.inMoney,jdbcType=DOUBLE},
       </if>
+      <if test="record.inDate != null">
+        in_date = #{record.inDate,jdbcType=DATE},
+      </if>
       <if test="record.returnMoney != null">
         return_money = #{record.returnMoney,jdbcType=DOUBLE},
       </if>
@@ -228,6 +238,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       reason = #{record.reason,jdbcType=VARCHAR},
       in_money = #{record.inMoney,jdbcType=DOUBLE},
+      in_date = #{record.inDate,jdbcType=DATE},
       return_money = #{record.returnMoney,jdbcType=DOUBLE},
       return_date = #{record.returnDate,jdbcType=TIMESTAMP},
       return_reason = #{record.returnReason,jdbcType=VARCHAR},
@@ -251,6 +262,9 @@
       </if>
       <if test="inMoney != null">
         in_money = #{inMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="inDate != null">
+        in_date = #{inDate,jdbcType=DATE},
       </if>
       <if test="returnMoney != null">
         return_money = #{returnMoney,jdbcType=DOUBLE},
@@ -276,6 +290,7 @@
       name = #{name,jdbcType=VARCHAR},
       reason = #{reason,jdbcType=VARCHAR},
       in_money = #{inMoney,jdbcType=DOUBLE},
+      in_date = #{inDate,jdbcType=DATE},
       return_money = #{returnMoney,jdbcType=DOUBLE},
       return_date = #{returnDate,jdbcType=TIMESTAMP},
       return_reason = #{returnReason,jdbcType=VARCHAR},

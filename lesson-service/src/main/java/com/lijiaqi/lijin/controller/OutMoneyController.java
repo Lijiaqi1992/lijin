@@ -42,8 +42,8 @@ public class OutMoneyController extends BaseController {
     }
 
     @ResponseBody
-    @PostMapping(value = "/list")
-    public Object list(@RequestBody SearchOutBO searchOutBO) {
+    @PostMapping(value = "/pageList")
+    public Object pageList(@RequestBody SearchOutBO searchOutBO) {
         searchOutBO.setUserId(getCurrentUserId());
         return selectOutPageListService.getOutPageList(searchOutBO);
     }
