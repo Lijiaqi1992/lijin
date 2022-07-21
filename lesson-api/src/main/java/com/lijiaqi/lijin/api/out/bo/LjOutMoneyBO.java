@@ -1,5 +1,6 @@
 package com.lijiaqi.lijin.api.out.bo;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class LjOutMoneyBO implements Serializable {
 
     private Double outMoney;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date outDate;
 
     private Integer inId;

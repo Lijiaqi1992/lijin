@@ -1,5 +1,6 @@
 package com.lijiaqi.lijin.api.in.bo;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.ljq.plugins.base.page.RspPage;
 import lombok.Data;
 
@@ -18,10 +19,12 @@ public class LjInMoneyBO extends RspPage implements Serializable {
 
     private Double inMoney;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date inDate;
 
     private Double returnMoney;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date returnDate;
 
     private String returnReason;
