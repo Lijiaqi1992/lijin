@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lijiaqi.lijin.dao.LjCommonMapper">
     <resultMap id="BaseResultMap" type="com.lijiaqi.lijin.po.InOutPO">
+        <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="reason" jdbcType="VARCHAR" property="reason"/>
@@ -10,13 +11,13 @@
         <result column="type" jdbcType="VARCHAR" property="type"/>
     </resultMap>
     <select id="getAllList" parameterType="com.lijiaqi.lijin.api.in.bo.SearchAllBO" resultMap="BaseResultMap">
-            select name, in_date as edate, in_money as money, 'in' as type, reason
+            select in_id as id, name, in_date as edate, in_money as money, 'in' as type, reason
             from lj_in_money where user_id = #{userId}
             <if test="name != null">
                 and name = #{name}
             </if>
         union all
-            select name, out_date as edate, out_money as money, 'out' as type, reason
+            select out_id as id, name, out_date as edate, out_money as money, 'out' as type, reason
             from lj_out_money
             where user_id = #{userId}
             <if test="name != null">
