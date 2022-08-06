@@ -9,6 +9,9 @@ import java.util.Date;
 
 @Data
 public class LjInMoneyBO extends RspPage implements Serializable {
+
+    private Integer id;
+
     private Integer inId;
 
     private Integer userId;
@@ -35,5 +38,7 @@ public class LjInMoneyBO extends RspPage implements Serializable {
 
     private String type = "in";
 
-
+    public Integer getId() {
+        return inId;
+    }
 }
