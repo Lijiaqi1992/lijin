@@ -10,18 +10,35 @@
         <result column="type" jdbcType="VARCHAR" property="type"/>
     </resultMap>
     <select id="getAllList" parameterType="com.lijiaqi.lijin.api.in.bo.SearchAllBO" resultMap="BaseResultMap">
-            select name, in_date as edate, in_money as money, 'in' as type, reason
-            from lj_in_money where user_id = #{userId}
-            <if test="name != null">
-                and name = #{name}
-            </if>
+        select name, in_date as edate, in_money as money, 'in' as type, reason
+        from lj_in_money where user_id = #{userId}
+        <if test="name != null">
+            and name = #{name}
+        </if>
         union all
-            select name, out_date as edate, out_money as money, 'out' as type, reason
-            from lj_out_money
-            where user_id = #{userId}
-            <if test="name != null">
-                and name = #{name}
-            </if>
-            order by edate desc, name
-  </select>
+        select name, out_date as edate, out_money as money, 'out' as type, reason
+        from lj_out_money
+        where user_id = #{userId}
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        order by edate desc, name
+    </select>
+    <select id="inMoneyCount" parameterType="java.lang.Integer" resultType="java.lang.Double">
+     select sum(in_money) from lj_in_money where user_id=#{userId}
+    </select>
+
+    <select id="outMoneyCount" parameterType="java.lang.Integer" resultType="java.lang.Double">
+     select sum(out_money) from lj_out_money where user_id=#{userId}
+    </select>
+    <select id="inMoneyGroupAnalysis" parameterType="java.lang.Integer"
+            resultType="com.lijiaqi.lijin.api.mine.bo.AnalysisPieBO">
+        select reason,sum(in_money) as money from lj_in_money where user_id=#{userId} group by reason
+    </select>
+
+    <select id="outMoneyGroupAnalysis" parameterType="java.lang.Integer"
+            resultType="com.lijiaqi.lijin.api.mine.bo.AnalysisPieBO">
+        select reason,sum(out_money) as money from lj_out_money where user_id=#{userId} group by reason
+    </select>
+
 </mapper>

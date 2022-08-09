@@ -1,6 +1,5 @@
 package com.lijiaqi.lijin.controller;
 
-
 import com.alibaba.fastjson.JSONObject;
 import com.lijiaqi.lijin.api.users.bo.LjUserBO;
 import com.lijiaqi.lijin.api.users.bo.UserBO;
