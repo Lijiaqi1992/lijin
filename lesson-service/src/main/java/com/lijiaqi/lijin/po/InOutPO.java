@@ -10,6 +10,7 @@ import java.util.Date;
  */
 @Data
 public class InOutPO {
+    private Integer id;
     private Integer userId;
     private String name;
     private Date edate;

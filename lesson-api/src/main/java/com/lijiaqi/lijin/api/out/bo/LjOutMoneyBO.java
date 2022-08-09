@@ -8,6 +8,8 @@ import java.util.Date;
 
 @Data
 public class LjOutMoneyBO implements Serializable {
+    private Integer id;
+
     private Integer outId;
 
     private Integer userId;
@@ -29,4 +31,7 @@ public class LjOutMoneyBO implements Serializable {
 
     private String type = "out";
 
+    public Integer getId() {
+        return outId;
+    }
 }

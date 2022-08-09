@@ -80,8 +80,9 @@ public class InMoneyController extends BaseController {
     public Object getAll(@RequestBody SearchAllBO searchAllBO){
         searchAllBO.setUserId(getCurrentUserId());
         Page<InOutPO> page = PageHelper.startPage(searchAllBO.getPageNo(), searchAllBO.getPageSize());
+        System.out.println(searchAllBO.getPageNo() +"--" +searchAllBO.getPageSize());
         List<InOutPO> allList = ljCommonMapper.getAllList(searchAllBO);
-        RspPage<InOutPO> rspPage = new RspPage<>();
+        RspPage<InOutPO> rspPage = new RspPage<>(searchAllBO.getPageNo(), searchAllBO.getPageSize());
         rspPage.setResult(allList);
         rspPage.setPageNo(searchAllBO.getPageNo());
         rspPage.setTotalPages(page.getPages());
