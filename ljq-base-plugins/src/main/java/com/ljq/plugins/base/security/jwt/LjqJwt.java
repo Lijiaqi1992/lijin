@@ -37,6 +37,10 @@ public class LjqJwt {
         return builder.compact();
     }
 
+    public static void main(String[] args) {
+        System.out.println(generateToken("23", "oW_cg5canRr7MUaTWmR9JFkkvArs"));
+    }
+
     /**
      * token解析
      * @param compactJwt

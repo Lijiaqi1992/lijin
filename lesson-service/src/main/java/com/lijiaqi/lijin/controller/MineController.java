@@ -1,7 +1,7 @@
 package com.lijiaqi.lijin.controller;
-import java.util.ArrayList;
 
 import com.lijiaqi.lijin.api.chart.Pie;
+import com.lijiaqi.lijin.api.chart.PieEC;
 import com.lijiaqi.lijin.api.mine.bo.AnalysisPieBO;
 import com.lijiaqi.lijin.api.mine.bo.CountBO;
 import com.lijiaqi.lijin.dao.LjCommonMapper;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +53,7 @@ public class MineController extends BaseController {
     public Object INanalysis() {
         Integer currentUserId = getCurrentUserId();
         List<AnalysisPieBO> analysisPieBOS = ljCommonMapper.inMoneyGroupAnalysis(currentUserId);
-        return toPie(analysisPieBOS);
+        return toPieEc(analysisPieBOS);
     }
 
     /**
@@ -63,9 +64,32 @@ public class MineController extends BaseController {
     public Object OUTanalysis() {
         Integer currentUserId = getCurrentUserId();
         List<AnalysisPieBO> analysisPieBOS = ljCommonMapper.outMoneyGroupAnalysis(currentUserId);
-        return toPie(analysisPieBOS);
+        return toPieEc(analysisPieBOS);
     }
 
+    /**
+     * echarts 饼图结构
+     *
+     * @param analysisPieBOS
+     * @return
+     */
+    private List<PieEC> toPieEc(List<AnalysisPieBO> analysisPieBOS) {
+        List<PieEC> list = new ArrayList<>();
+        analysisPieBOS.forEach(it -> {
+            PieEC pieEC = new PieEC();
+            pieEC.setName(it.getReason());
+            pieEC.setValue(it.getMoney());
+            list.add(pieEC);
+        });
+        return list;
+    }
+
+    /**
+     * chartJS 饼图结构
+     *
+     * @param analysisPieBOS
+     * @return
+     */
     private Pie toPie(List<AnalysisPieBO> analysisPieBOS) {
         List<String> reasonList = analysisPieBOS.stream().map(AnalysisPieBO::getReason).collect(Collectors.toList());
         List<Double> moneyList = analysisPieBOS.stream().map(AnalysisPieBO::getMoney).collect(Collectors.toList());
