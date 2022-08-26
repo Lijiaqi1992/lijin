@@ -79,6 +79,7 @@ public class LoginController {
         user.setOpenid(resp.getOpenid());
         LjUserBO userIfNotExistsInWx = userCreateService.createUserIfNotExistsInWx(user);
         response.setHeader("token", LjqJwt.generateToken(userIfNotExistsInWx.getUserId() + "", userIfNotExistsInWx.getUserName()));
+        System.out.println(resp.getOpenid()+" 登录了 ");
         return resp.getOpenid();
     }
 

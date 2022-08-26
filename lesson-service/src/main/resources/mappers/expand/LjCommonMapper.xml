@@ -11,13 +11,13 @@
         <result column="type" jdbcType="VARCHAR" property="type"/>
     </resultMap>
     <select id="getAllList" parameterType="com.lijiaqi.lijin.api.in.bo.SearchAllBO" resultMap="BaseResultMap">
-        select name, in_date as edate, in_money as money, 'in' as type, reason
+        select in_id as id,name, in_date as edate, in_money as money, 'in' as type, reason
         from lj_in_money where user_id = #{userId}
         <if test="name != null">
             and name = #{name}
         </if>
         union all
-        select name, out_date as edate, out_money as money, 'out' as type, reason
+        select out_id as id,name, out_date as edate, out_money as money, 'out' as type, reason
         from lj_out_money
         where user_id = #{userId}
         <if test="name != null">
