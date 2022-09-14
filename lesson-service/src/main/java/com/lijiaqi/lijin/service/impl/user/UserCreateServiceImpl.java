@@ -5,6 +5,7 @@ import com.lijiaqi.lijin.api.users.service.UserCreateService;
 import com.lijiaqi.lijin.dao.LjUserPOMapper;
 import com.lijiaqi.lijin.po.LjUserPO;
 import com.lijiaqi.lijin.po.LjUserPOCriterion;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  * 2022-07-15
  */
 @Service
+@Slf4j
 public class UserCreateServiceImpl implements UserCreateService {
     @Resource
     LjUserPOMapper ljUserPOMapper;
@@ -42,7 +44,15 @@ public class UserCreateServiceImpl implements UserCreateService {
         if(ljUserPOS.size() == 0){
             return createUser(userBO);
         }
-        BeanUtils.copyProperties(ljUserPOS.get(0), userBO);
+        LjUserPO userPO = ljUserPOS.get(0);
+        userPO.setLastLoginDate(new Date());
+        try {
+            ljUserPOMapper.updateByPrimaryKey(userPO);
+        }catch (Exception e){
+            log.error("登录修改时间报错");
+            e.printStackTrace();
+        }
+        BeanUtils.copyProperties(userPO, userBO);
         return userBO;
     }
 }
